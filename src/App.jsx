@@ -321,7 +321,7 @@ function App() {
       date: 'Jan 2026 – Mar 2026',
       description: 'A full-stack bakery management system built using the MERN stack to streamline bakery operations. The system enables product management, real-time customer order tracking, inventory management, and sales analytics through an intuitive administrative dashboard.',
       link: 'https://youtu.be/H1U83EdLU_I',
-      github: 'https://github.com/govarthan29/Rolex-Cakes-and-Bakery',
+      github: 'https://github.com/govarthan29/Rolex_Bakery_Website',
       color: '#f59e0b',
       gfx: (
         <div className="mockup-window">
@@ -350,7 +350,7 @@ function App() {
       date: 'Sep 2025 – Dec 2025',
       description: 'An interactive MERN stack web game featuring Heart API integration, secure JWT-based authentication, personalized user profiles, and real-time leaderboard rankings to deliver an engaging and competitive gaming experience.',
       link: 'https://youtu.be/xZc1MdcXD60',
-      github: 'https://github.com/govarthan29/Heart-Pulse',
+      github: 'https://github.com/govarthan29/Heart-Pulse-Game',
       color: '#ef4444',
       gfx: (
         <div className="mockup-window">
