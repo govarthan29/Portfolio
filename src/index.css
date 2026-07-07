@@ -516,17 +516,20 @@ section {
   gap: 0.75rem;
   box-shadow: var(--shadow-lg);
   z-index: 3;
+  white-space: nowrap;
 }
 
 .badge-1 {
-  top: 15%;
-  left: -60px;
+  top: 60%;
+  left: 50%;
+  margin-left: -285px;
   animation: float-reverse 5s ease-in-out infinite;
 }
 
 .badge-2 {
-  bottom: 15%;
-  right: -20px;
+  bottom: 56%;
+  right: 50%;
+  margin-right: -260px;
   animation: float 7s ease-in-out infinite 0.5s;
 }
 
@@ -1378,5 +1381,13 @@ textarea.form-control {
   .visual-backdrop-circle {
     width: 300px;
     height: 300px;
+  }
+
+  .badge-1 {
+    margin-left: -250px;
+  }
+
+  .badge-2 {
+    margin-right: -225px;
   }
 }

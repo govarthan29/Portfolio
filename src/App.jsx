@@ -18,8 +18,8 @@ const Icons = {
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
     </svg>
   ),
-  Github: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  Github: ({ size = 20 } = {}) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
       <path d="M9 18c-4.51 2-5-2-7-2"></path>
     </svg>
@@ -296,6 +296,7 @@ function App() {
       date: 'Oct 2025 – Apr 2026',
       description: 'An AI-powered waste classification and craft recommendation platform that uses TensorFlow to identify waste materials from user-uploaded images and recommend creative DIY craft ideas, encouraging sustainable waste management through intelligent image recognition.',
       link: 'https://youtu.be/1IHSbIvhWls',
+      github: 'https://github.com/govarthan29/ReUseIt',
       color: '#10b981',
       gfx: (
         <div className="mockup-window">
@@ -320,6 +321,7 @@ function App() {
       date: 'Jan 2026 – Mar 2026',
       description: 'A full-stack bakery management system built using the MERN stack to streamline bakery operations. The system enables product management, real-time customer order tracking, inventory management, and sales analytics through an intuitive administrative dashboard.',
       link: 'https://youtu.be/H1U83EdLU_I',
+      github: 'https://github.com/govarthan29/Rolex-Cakes-and-Bakery',
       color: '#f59e0b',
       gfx: (
         <div className="mockup-window">
@@ -348,6 +350,7 @@ function App() {
       date: 'Sep 2025 – Dec 2025',
       description: 'An interactive MERN stack web game featuring Heart API integration, secure JWT-based authentication, personalized user profiles, and real-time leaderboard rankings to deliver an engaging and competitive gaming experience.',
       link: 'https://youtu.be/xZc1MdcXD60',
+      github: 'https://github.com/govarthan29/Heart-Pulse',
       color: '#ef4444',
       gfx: (
         <div className="mockup-window">
@@ -393,6 +396,7 @@ function App() {
       date: 'Apr 2025 – Sep 2025',
       description: 'A premium musical instruments e-commerce platform built with PHP, MySQL, JavaScript (AJAX), HTML, and CSS, enabling users to browse products, manage shopping carts, place orders, and allowing administrators to manage products, customers, orders, and sales through a secure admin dashboard.',
       link: 'https://youtu.be/1D1NLJSvtOE',
+      github: 'https://github.com/govarthan29/TUVOKA',
       color: '#8b5cf6',
       gfx: (
         <div className="mockup-window">
@@ -422,6 +426,7 @@ function App() {
       date: 'Apr 2023 – Jul 2023',
       description: 'A responsive web-based platform for browsing and booking motor vehicle spare parts. Features dynamic product search, shopping cart management, invoice generation, user profile management, and a well-structured database for efficient inventory management.',
       link: 'https://youtu.be/jViqB3_81ZE',
+      github: 'https://github.com/govarthan29/Motor-Parts-E-Commerce-Website',
       color: '#6366f1',
       gfx: (
         <div className="mockup-window">
@@ -1006,6 +1011,12 @@ function App() {
                       <span>View Project Demo</span>
                       <Icons.ExternalLink />
                     </a>
+                    {project.github && (
+                      <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer" style={{ marginLeft: 'auto' }}>
+                        <Icons.Github size={14} />
+                        <span>View Source Code</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
