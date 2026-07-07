@@ -505,7 +505,7 @@ function App() {
   // Trigger automatic download of the resume PDF
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/Govarthan_Subaharan_Resume.pdf';
+    link.href = `${import.meta.env.BASE_URL}Govarthan_Subaharan_Resume.pdf`;
     link.download = 'Govarthan_Subaharan_Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -807,7 +807,7 @@ function App() {
             <div className="avatar-wrapper">
               <div className="avatar-inner">
                 <img 
-                  src="/developer_avatar.png" 
+                  src={`${import.meta.env.BASE_URL}developer_avatar.png`}
                   alt="Govarthan Subaharan Portrait Illustration" 
                   className="avatar-image"
                 />
