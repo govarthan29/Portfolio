@@ -1007,7 +1007,7 @@ function App() {
                   </div>
 
                   <div className="project-links">
-                    <a href={project.link} className="project-link">
+                    <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
                       <span>View Project Demo</span>
                       <Icons.ExternalLink />
                     </a>
