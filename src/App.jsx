@@ -299,18 +299,11 @@ function App() {
       github: 'https://github.com/govarthan29/ReUseIt',
       color: '#10b981',
       gfx: (
-        <div className="mockup-window">
-          <div className="mockup-header">
-            <div className="mockup-dot dot-red"></div>
-            <div className="mockup-dot dot-yellow"></div>
-            <div className="mockup-dot dot-green"></div>
-          </div>
-          <div className="mockup-body" style={{ background: '#090d16' }}>
-            <div className="reuseit-gfx">♻</div>
-            <div style={{ color: '#10b981', fontWeight: 600, fontSize: '0.85rem' }}>ReUseIt AI Platform</div>
-            <div style={{ color: '#6b7280', fontSize: '0.65rem', marginTop: '4px' }}>Waste Classification: Plastic (98%)</div>
-          </div>
-        </div>
+        <img 
+          src={`${import.meta.env.BASE_URL}assets/ReUseIt_Home_Page.png`} 
+          alt="ReUseIt Homepage" 
+          className="project-screenshot-img"
+        />
       )
     },
     {
@@ -324,22 +317,11 @@ function App() {
       github: 'https://github.com/govarthan29/Rolex_Bakery_Website',
       color: '#f59e0b',
       gfx: (
-        <div className="mockup-window">
-          <div className="mockup-header">
-            <div className="mockup-dot dot-red"></div>
-            <div className="mockup-dot dot-yellow"></div>
-            <div className="mockup-dot dot-green"></div>
-          </div>
-          <div className="mockup-body" style={{ background: '#090d16', padding: '8px' }}>
-            <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.6rem', color: '#f59e0b' }}>Rolex Bakery</span>
-              <span style={{ fontSize: '0.6rem', background: '#374151', padding: '1px 4px', borderRadius: '3px' }}>Admin</span>
-            </div>
-            <div className="rolex-gfx"></div>
-            <div className="rolex-gfx" style={{ width: '60%', opacity: 0.6 }}></div>
-            <div className="rolex-gfx" style={{ width: '70%', opacity: 0.3 }}></div>
-          </div>
-        </div>
+        <img 
+          src={`${import.meta.env.BASE_URL}assets/Rolex_Home_Page.png`} 
+          alt="Rolex Cakes and Bakery Homepage" 
+          className="project-screenshot-img"
+        />
       )
     },
     {
@@ -353,17 +335,11 @@ function App() {
       github: 'https://github.com/govarthan29/Heart-Pulse-Game',
       color: '#ef4444',
       gfx: (
-        <div className="mockup-window">
-          <div className="mockup-header">
-            <div className="mockup-dot dot-red"></div>
-            <div className="mockup-dot dot-yellow"></div>
-            <div className="mockup-dot dot-green"></div>
-          </div>
-          <div className="mockup-body" style={{ background: '#0f172a', textAlign: 'center' }}>
-            <div style={{ fontSize: '2.5rem', animation: 'float 2s infinite', color: '#ef4444' }}>♥</div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#f3f4f6' }}>Score: 1,480 bpm</div>
-          </div>
-        </div>
+        <img 
+          src={`${import.meta.env.BASE_URL}assets/Heart_Game_Home_Page.png`} 
+          alt="Heart Pulse Homepage" 
+          className="project-screenshot-img"
+        />
       )
     },
     // {
@@ -399,23 +375,11 @@ function App() {
       github: 'https://github.com/govarthan29/TUVOKA',
       color: '#8b5cf6',
       gfx: (
-        <div className="mockup-window">
-          <div className="mockup-header">
-            <div className="mockup-dot dot-red"></div>
-            <div className="mockup-dot dot-yellow"></div>
-            <div className="mockup-dot dot-green"></div>
-          </div>
-          <div className="mockup-body" style={{ background: '#090d16', padding: '8px' }}>
-            <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.6rem', color: '#8b5cf6' }}>TUVOKA Store</span>
-              <span style={{ fontSize: '0.6rem', background: '#374151', padding: '1px 4px', borderRadius: '3px' }}>Admin</span>
-            </div>
-            <div style={{ fontSize: '1.6rem', marginBottom: '6px', color: '#8b5cf6' }}>♫</div>
-            <div style={{ width: '80%', height: '8px', background: '#8b5cf6', borderRadius: '999px', opacity: 0.9 }}></div>
-            <div style={{ width: '65%', height: '8px', background: '#8b5cf6', borderRadius: '999px', opacity: 0.5, marginTop: '6px' }}></div>
-            <div style={{ width: '70%', height: '8px', background: '#8b5cf6', borderRadius: '999px', opacity: 0.25, marginTop: '6px' }}></div>
-          </div>
-        </div>
+        <img 
+          src={`${import.meta.env.BASE_URL}assets/TUVOKA_Home_Page.png`} 
+          alt="TUVOKA Homepage" 
+          className="project-screenshot-img"
+        />
       )
     },
     {
@@ -429,23 +393,11 @@ function App() {
       github: 'https://github.com/govarthan29/Motor-Parts-E-Commerce-Website',
       color: '#6366f1',
       gfx: (
-        <div className="mockup-window">
-          <div className="mockup-header">
-            <div className="mockup-dot dot-red"></div>
-            <div className="mockup-dot dot-yellow"></div>
-            <div className="mockup-dot dot-green"></div>
-          </div>
-          <div className="mockup-body" style={{ background: '#090d16' }}>
-            <div style={{ border: '1px solid #1f2937', borderRadius: '4px', width: '90%', padding: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <div style={{ width: '8px', height: '8px', background: '#6366f1', borderRadius: '2px' }}></div>
-              <span style={{ fontSize: '0.55rem', color: '#9ca3af' }}>Search: "Spark Plug"</span>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', width: '90%', marginTop: '6px' }}>
-              <div style={{ background: '#1f2937', height: '18px', borderRadius: '2px' }}></div>
-              <div style={{ background: '#1f2937', height: '18px', borderRadius: '2px' }}></div>
-            </div>
-          </div>
-        </div>
+        <img 
+          src={`${import.meta.env.BASE_URL}assets/Motor_Parts_Home_Page.png`} 
+          alt="Motor Parts Platform Homepage" 
+          className="project-screenshot-img"
+        />
       )
     }
   ];
@@ -1012,7 +964,7 @@ function App() {
                       <Icons.ExternalLink />
                     </a>
                     {project.github && (
-                      <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer" style={{ marginLeft: 'auto' }}>
+                      <a href={project.github} className="project-link" target="_blank" rel="noopener noreferrer">
                         <Icons.Github size={14} />
                         <span>View Source Code</span>
                       </a>

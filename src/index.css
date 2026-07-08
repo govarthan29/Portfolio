@@ -810,7 +810,7 @@ section {
 }
 
 .project-visual {
-  height: 200px;
+  height: 250px;
   position: relative;
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
   display: flex;
@@ -832,6 +832,7 @@ section {
   align-items: center;
   justify-content: center;
   transition: transform var(--transition-normal);
+  padding: 1rem;
 }
 
 .project-badge-top {
@@ -849,6 +850,16 @@ section {
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1;
+}
+
+.project-screenshot-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  display: block;
 }
 
 /* Beautiful Mock-Ups in Project Visuals */
@@ -981,7 +992,10 @@ section {
 
 .project-links {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
   border-top: 1px solid var(--border-color);
   padding-top: 1.25rem;
 }
@@ -993,6 +1007,19 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .project-link {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .project-link {
+    font-size: 0.7rem;
+  }
 }
 
 .project-link:hover {
