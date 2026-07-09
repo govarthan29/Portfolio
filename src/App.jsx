@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
+import emailjs from '@emailjs/browser';
 
 // Icons represented as inline SVG components for crisp display and no extra package dependencies
 const Icons = {
@@ -420,42 +422,28 @@ function App() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.message) {
-      setIsSubmitting(true);
-      setSubmitStatus(null);
-      try {
-        const response = await fetch("https://formsubmit.co/ajax/subakarankovarthan29@gmail.com", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-            _subject: `New Portfolio Message from ${formData.name}`,
-            _captcha: "false"
-          })
-        });
-
-        const result = await response.json();
-        if (response.ok && result.success === "true") {
-          setSubmitStatus("success");
-          setFormData({ name: '', email: '', message: '' });
-        } else {
-          setSubmitStatus("error");
-        }
-      } catch (error) {
-        console.error("Error submitting contact form:", error);
-        setSubmitStatus("error");
-      } finally {
-        setIsSubmitting(false);
-        // Reset status after a delay so the alert hides
-        setTimeout(() => {
-          setSubmitStatus(null);
-        }, 6000);
-      }
+    if (!formData.name || !formData.email || !formData.message) return;
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      setSubmitStatus('success');
+      setFormData({ name:'', email:'', message:''});
+    } catch(error){
+      console.error('EmailJS Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(()=>setSubmitStatus(null),6000);
     }
   };
 
@@ -467,6 +455,46 @@ function App() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+
+  // Framer Motion animation variants
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 45 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.75, ease: "easeOut" }
+    }
+  };
+
+  const staggerContainerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.15
+      }
+    }
+  };
+
+  const staggerItemVariants = {
+    hidden: { opacity: 0, y: 28 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  const heroVisualVariants = {
+    hidden: { opacity: 0, scale: 0.92, y: 30 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.85, ease: "easeOut", delay: 0.25 }
+    }
   };
 
   return (
@@ -697,36 +725,42 @@ function App() {
       </nav>
 
       {/* --- Hero Section --- */}
-      <section id="home" className="hero-section">
+      <motion.section
+        id="home"
+        className="hero-section"
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <div className="ambient-glow"></div>
         <div className="container hero-grid">
-          <div className="hero-content">
-            <div className="hero-tagline">
+          <motion.div className="hero-content" variants={staggerContainerVariants}>
+            <motion.div className="hero-tagline" variants={staggerItemVariants}>
               <span className="hero-tagline-dot"></span>
               Open to Opportunities
-            </div>
+            </motion.div>
             
-            <h1 className="hero-title">
+            <motion.h1 className="hero-title" variants={staggerItemVariants}>
               Hi, I'm <span className="text-gradient">Govarthan</span>
-            </h1>
+            </motion.h1>
 
-            <div className="hero-role-container">
+            <motion.div className="hero-role-container" variants={staggerItemVariants}>
               <span className="hero-role">
                 {currentRoleText}
                 <span style={{ color: 'var(--accent-primary)', animation: 'pulse-glow 1s infinite' }}>|</span>
               </span>
-            </div>
+            </motion.div>
 
-            <p className="hero-description">
+            <motion.p className="hero-description" variants={staggerItemVariants}>
               A computer science graduate passionate about Software Engineering, Full-Stack development, Quality Assurance, and AI. I build responsive web systems and clean mobile applications to solve real-world problems.
-            </p>
+            </motion.p>
 
-            <div className="hero-actions">
+            <motion.div className="hero-actions" variants={staggerItemVariants}>
               <a href="#contact" className="btn-primary">Get In Touch</a>
               <a href="#projects" className="btn-secondary">View My Work</a>
-            </div>
+            </motion.div>
 
-            <div className="hero-stats">
+            <motion.div className="hero-stats" variants={staggerItemVariants}>
               <div className="stat-item">
                 <span className="stat-value">7+</span>
                 <span className="stat-label">Projects</span>
@@ -739,10 +773,10 @@ function App() {
                 <span className="stat-value">4</span>
                 <span className="stat-label">Years Learning</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="hero-visual">
+          <motion.div className="hero-visual" variants={heroVisualVariants}>
             <div className="visual-backdrop-circle"></div>
             
             <div className="visual-floating-badge badge-1">
@@ -770,16 +804,23 @@ function App() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* --- About Me Section --- */}
-      <section id="about" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+      <motion.section
+        id="about"
+        style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.14 }}
+      >
         <div className="ambient-glow-right"></div>
         <div className="container">
           <div className="section-title-wrapper">
-            <span className="section-subtitle">Biography</span>
+            {/* <span className="section-subtitle">Biography</span> */}
             <h2 className="section-title">About Me</h2>
           </div>
 
@@ -817,48 +858,54 @@ function App() {
               </div>
             </div>
 
-            <div className="values-grid">
-              <div className="value-card">
+            <motion.div className="values-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.14 }}>
+              <motion.div className="value-card" variants={staggerItemVariants}>
                 <div className="value-icon">
                   <Icons.Code />
                 </div>
                 <h4 className="value-title">Full-Stack Development</h4>
                 <p className="value-description">Experienced in building responsive frontend interfaces and scalable backend solutions using React, Node.js, Express.js, PHP, and Spring Boot.</p>
-              </div>
+              </motion.div>
 
-              <div className="value-card">
+              <motion.div className="value-card" variants={staggerItemVariants}>
                 <div className="value-icon">
                   <Icons.Cpu />
                 </div>
                 <h4 className="value-title">AI & Data Science</h4>
                 <p className="value-description">Experienced in waste classification and NLP models using TensorFlow, Computer Vision, and Python.</p>
-              </div>
+              </motion.div>
 
-              <div className="value-card">
+              <motion.div className="value-card" variants={staggerItemVariants}>
                 <div className="value-icon">
                   <Icons.Terminal />
                 </div>
                 <h4 className="value-title">Quality Assurance</h4>
                 <p className="value-description">Passionate about checking requirements, code testability, and delivering bug-free client experiences.</p>
-              </div>
+              </motion.div>
 
-              <div className="value-card">
+              <motion.div className="value-card" variants={staggerItemVariants}>
                 <div className="value-icon">
                   <Icons.Layers />
                 </div>
                 <h4 className="value-title">Adaptable & Driven</h4>
                 <p className="value-description">Able to quickly pick up new language stacks, collaborate in team environments, and problem solve.</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* --- Skills Section --- */}
-      <section id="skills">
+      <motion.section
+        id="skills"
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.14 }}
+      >
         <div className="container">
           <div className="section-title-wrapper">
-            <span className="section-subtitle">Proficiencies</span>
+            {/* <span className="section-subtitle">Proficiencies</span> */}
             <h2 className="section-title">My Skills & Stack</h2>
           </div>
 
@@ -877,9 +924,9 @@ function App() {
 
             {activeSkillCategory === 'All' ? (
               // Structured categorized display for "All Skills"
-              <div className="skills-grid">
+              <motion.div className="skills-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.14 }}>
                 {categoriesList.map(category => (
-                  <div className="skill-category-card" key={category}>
+                  <motion.div className="skill-category-card" key={category} variants={staggerItemVariants}>
                     <h3 className="skill-category-title">
                       <span style={{ color: 'var(--accent-primary)', display: 'inline-flex' }}>
                         {getCategoryIcon(category)}
@@ -894,9 +941,9 @@ function App() {
                         ))
                       }
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             ) : (
               // Filtered list display for active category tabs
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', maxWidth: '800px', margin: '0 auto' }}>
@@ -910,13 +957,20 @@ function App() {
             )}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* --- Projects Section --- */}
-      <section id="projects" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+      <motion.section
+        id="projects"
+        style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.12 }}
+      >
         <div className="container">
           <div className="section-title-wrapper">
-            <span className="section-subtitle">Portfolio Showcase</span>
+            {/* <span className="section-subtitle">Portfolio Showcase</span> */}
             <h2 className="section-title">Recent Projects</h2>
           </div>
 
@@ -932,9 +986,9 @@ function App() {
             ))}
           </div>
 
-          <div className="projects-grid">
+          <motion.div className="projects-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
             {filteredProjects.map((project, index) => (
-              <article className="project-card" key={index}>
+              <motion.article className="project-card" key={index} variants={staggerItemVariants}>
                 <div className="project-visual">
                   <span className="project-badge-top">{project.category}</span>
                   <div className="project-visual-pattern">
@@ -971,14 +1025,21 @@ function App() {
                     )}
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* --- Contact Section --- */}
-      <section id="contact" style={{ background: 'var(--bg-primary)', borderTop: '1px solid var(--border-color)' }}>
+      <motion.section
+        id="contact"
+        style={{ background: 'var(--bg-primary)', borderTop: '1px solid var(--border-color)' }}
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.14 }}
+      >
         <div className="ambient-glow"></div>
         <div className="container contact-grid">
           <div className="contact-info">
@@ -1116,13 +1177,13 @@ function App() {
             </form>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* --- Footer --- */}
       <footer className="footer">
         <div className="container footer-container">
           
-          <p>© {new Date().getFullYear()} Govarthan Subaharan. All rights reserved. Built with React & Vanilla CSS.</p>
+          <p>© {new Date().getFullYear()} Govarthan Subaharan. All rights reserved. Designed & Developed by Govarthan Subaharan.</p>
           
           <button 
             className="back-to-top-btn" 
