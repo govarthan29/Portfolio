@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
 
 // Icons represented as inline SVG components for crisp display and no extra package dependencies
@@ -986,9 +986,17 @@ function App() {
             ))}
           </div>
 
-          <motion.div className="projects-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
-            {filteredProjects.map((project, index) => (
-              <motion.article className="project-card" key={index} variants={staggerItemVariants}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeProjectFilter}
+              className="projects-grid"
+              variants={staggerContainerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+            >
+              {filteredProjects.map((project) => (
+                <motion.article className="project-card" key={project.title} variants={staggerItemVariants}>
                 <div className="project-visual">
                   <span className="project-badge-top">{project.category}</span>
                   <div className="project-visual-pattern">
@@ -1025,9 +1033,10 @@ function App() {
                     )}
                   </div>
                 </div>
-              </motion.article>
-            ))}
-          </motion.div>
+                </motion.article>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </motion.section>
 
