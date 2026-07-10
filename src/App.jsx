@@ -458,28 +458,9 @@ function App() {
   };
 
 
-  // Framer Motion animation variants
+  // Simple smooth section reveal animation
   const sectionVariants = {
-    hidden: { opacity: 0, y: 45 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.75, ease: "easeOut" }
-    }
-  };
-
-  const staggerContainerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.15
-      }
-    }
-  };
-
-  const staggerItemVariants = {
-    hidden: { opacity: 0, y: 28 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -487,15 +468,21 @@ function App() {
     }
   };
 
-  const heroVisualVariants = {
-    hidden: { opacity: 0, scale: 0.92, y: 30 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: { duration: 0.85, ease: "easeOut", delay: 0.25 }
+  const heroVariants = {
+  hidden: {
+    opacity: 0,
+    y: 25
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.4,
+      delay: 0.2,
+      ease: [0.22, 1, 0.36, 1]
     }
-  };
+  }
+};
 
   return (
     <>
@@ -728,39 +715,39 @@ function App() {
       <motion.section
         id="home"
         className="hero-section"
-        variants={sectionVariants}
+        variants={heroVariants}
         initial="hidden"
         animate="visible"
       >
         <div className="ambient-glow"></div>
         <div className="container hero-grid">
-          <motion.div className="hero-content" variants={staggerContainerVariants}>
-            <motion.div className="hero-tagline" variants={staggerItemVariants}>
+          <div className="hero-content">
+            <div className="hero-tagline">
               <span className="hero-tagline-dot"></span>
               Open to Opportunities
-            </motion.div>
+            </div>
             
-            <motion.h1 className="hero-title" variants={staggerItemVariants}>
+            <h1 className="hero-title">
               Hi, I'm <span className="text-gradient">Govarthan</span>
-            </motion.h1>
+            </h1>
 
-            <motion.div className="hero-role-container" variants={staggerItemVariants}>
+            <div className="hero-role-container">
               <span className="hero-role">
                 {currentRoleText}
                 <span style={{ color: 'var(--accent-primary)', animation: 'pulse-glow 1s infinite' }}>|</span>
               </span>
-            </motion.div>
+            </div>
 
-            <motion.p className="hero-description" variants={staggerItemVariants}>
+            <p className="hero-description">
               A computer science graduate passionate about Software Engineering, Full-Stack development, Quality Assurance, and AI. I build responsive web systems and clean mobile applications to solve real-world problems.
-            </motion.p>
+            </p>
 
-            <motion.div className="hero-actions" variants={staggerItemVariants}>
+            <div className="hero-actions">
               <a href="#contact" className="btn-primary">Get In Touch</a>
               <a href="#projects" className="btn-secondary">View My Work</a>
-            </motion.div>
+            </div>
 
-            <motion.div className="hero-stats" variants={staggerItemVariants}>
+            <div className="hero-stats">
               <div className="stat-item">
                 <span className="stat-value">7+</span>
                 <span className="stat-label">Projects</span>
@@ -773,10 +760,10 @@ function App() {
                 <span className="stat-value">4</span>
                 <span className="stat-label">Years Learning</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
-          <motion.div className="hero-visual" variants={heroVisualVariants}>
+          <div className="hero-visual">
             <div className="visual-backdrop-circle"></div>
             
             <div className="visual-floating-badge badge-1">
@@ -804,7 +791,7 @@ function App() {
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </motion.section>
 
@@ -815,7 +802,7 @@ function App() {
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.14 }}
+        viewport={{ once: true, amount: 0.12 }}
       >
         <div className="ambient-glow-right"></div>
         <div className="container">
@@ -858,39 +845,39 @@ function App() {
               </div>
             </div>
 
-            <motion.div className="values-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.14 }}>
-              <motion.div className="value-card" variants={staggerItemVariants}>
+            <div className="values-grid">
+              <div className="value-card">
                 <div className="value-icon">
                   <Icons.Code />
                 </div>
                 <h4 className="value-title">Full-Stack Development</h4>
                 <p className="value-description">Experienced in building responsive frontend interfaces and scalable backend solutions using React, Node.js, Express.js, PHP, and Spring Boot.</p>
-              </motion.div>
+              </div>
 
-              <motion.div className="value-card" variants={staggerItemVariants}>
+              <div className="value-card">
                 <div className="value-icon">
                   <Icons.Cpu />
                 </div>
                 <h4 className="value-title">AI & Data Science</h4>
                 <p className="value-description">Experienced in waste classification and NLP models using TensorFlow, Computer Vision, and Python.</p>
-              </motion.div>
+              </div>
 
-              <motion.div className="value-card" variants={staggerItemVariants}>
+              <div className="value-card">
                 <div className="value-icon">
                   <Icons.Terminal />
                 </div>
                 <h4 className="value-title">Quality Assurance</h4>
                 <p className="value-description">Passionate about checking requirements, code testability, and delivering bug-free client experiences.</p>
-              </motion.div>
+              </div>
 
-              <motion.div className="value-card" variants={staggerItemVariants}>
+              <div className="value-card">
                 <div className="value-icon">
                   <Icons.Layers />
                 </div>
                 <h4 className="value-title">Adaptable & Driven</h4>
                 <p className="value-description">Able to quickly pick up new language stacks, collaborate in team environments, and problem solve.</p>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -901,7 +888,7 @@ function App() {
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.14 }}
+        viewport={{ once: true, amount: 0.12 }}
       >
         <div className="container">
           <div className="section-title-wrapper">
@@ -924,9 +911,9 @@ function App() {
 
             {activeSkillCategory === 'All' ? (
               // Structured categorized display for "All Skills"
-              <motion.div className="skills-grid" variants={staggerContainerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.14 }}>
+              <div className="skills-grid">
                 {categoriesList.map(category => (
-                  <motion.div className="skill-category-card" key={category} variants={staggerItemVariants}>
+                  <div className="skill-category-card" key={category}>
                     <h3 className="skill-category-title">
                       <span style={{ color: 'var(--accent-primary)', display: 'inline-flex' }}>
                         {getCategoryIcon(category)}
@@ -941,9 +928,9 @@ function App() {
                         ))
                       }
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             ) : (
               // Filtered list display for active category tabs
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', maxWidth: '800px', margin: '0 auto' }}>
@@ -966,7 +953,7 @@ function App() {
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.12 }}
+        viewport={{ once: true, amount: 0.07 }}
       >
         <div className="container">
           <div className="section-title-wrapper">
@@ -990,13 +977,13 @@ function App() {
             <motion.div
               key={activeProjectFilter}
               className="projects-grid"
-              variants={staggerContainerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
             >
               {filteredProjects.map((project) => (
-                <motion.article className="project-card" key={project.title} variants={staggerItemVariants}>
+                <article className="project-card" key={project.title}>
                 <div className="project-visual">
                   <span className="project-badge-top">{project.category}</span>
                   <div className="project-visual-pattern">
@@ -1033,7 +1020,7 @@ function App() {
                     )}
                   </div>
                 </div>
-                </motion.article>
+                </article>
               ))}
             </motion.div>
           </AnimatePresence>
@@ -1047,7 +1034,7 @@ function App() {
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.14 }}
+        viewport={{ once: true, amount: 0.16 }}
       >
         <div className="ambient-glow"></div>
         <div className="container contact-grid">
